@@ -1,9 +1,14 @@
-package de.nilsdruyen.myboardgames.model.database.transformers
+/*
+ * Created by Nils Druyen on 12-29-2021
+ * Copyright © 2021 Nils Druyen. All rights reserved.
+ */
 
-import de.nilsdruyen.myboardgames.model.BoardGame
-import de.nilsdruyen.myboardgames.model.Location
-import de.nilsdruyen.myboardgames.model.database.entities.BoardGameEntity
-import de.nilsdruyen.myboardgames.model.database.entities.LocationEntity
+package de.nilsdruyen.myboardgames.data.database.transformers
+
+import de.nilsdruyen.myboardgames.data.database.entities.BoardGameEntity
+import de.nilsdruyen.myboardgames.data.database.entities.LocationEntity
+import de.nilsdruyen.myboardgames.data.models.BoardGame
+import de.nilsdruyen.myboardgames.data.models.Location
 import javax.inject.Inject
 
 class BoardGameTransformerImpl @Inject constructor() : BoardGameTransformer {

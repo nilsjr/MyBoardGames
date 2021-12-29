@@ -1,4 +1,9 @@
-package de.nilsdruyen.myboardgames.model.database
+/*
+ * Created by Nils Druyen on 12-29-2021
+ * Copyright © 2021 Nils Druyen. All rights reserved.
+ */
+
+package de.nilsdruyen.myboardgames.data.database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,9 +11,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.squareup.moshi.Moshi
-import de.nilsdruyen.myboardgames.model.database.converters.LocationConverter
-import de.nilsdruyen.myboardgames.model.database.daos.BoardGameDao
-import de.nilsdruyen.myboardgames.model.database.entities.BoardGameEntity
+import de.nilsdruyen.myboardgames.data.database.converters.LocationConverter
+import de.nilsdruyen.myboardgames.data.database.daos.BoardGameDao
+import de.nilsdruyen.myboardgames.data.database.entities.BoardGameEntity
 
 @Database(entities = [BoardGameEntity::class], version = 1)
 @TypeConverters(LocationConverter::class)

@@ -1,3 +1,8 @@
+/*
+ * Created by Nils Druyen on 12-29-2021
+ * Copyright © 2021 Nils Druyen. All rights reserved.
+ */
+
 package de.nilsdruyen.myboardgames.ui
 
 import android.os.Bundle
@@ -32,7 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dagger.hilt.android.AndroidEntryPoint
-import de.nilsdruyen.myboardgames.model.BoardGame
+import de.nilsdruyen.myboardgames.data.models.BoardGame
 import de.nilsdruyen.myboardgames.ui.theme.MyBoardGamesTheme
 
 @AndroidEntryPoint

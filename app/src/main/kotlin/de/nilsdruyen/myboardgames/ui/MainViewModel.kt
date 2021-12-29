@@ -1,3 +1,8 @@
+/*
+ * Created by Nils Druyen on 12-29-2021
+ * Copyright © 2021 Nils Druyen. All rights reserved.
+ */
+
 package de.nilsdruyen.myboardgames.ui
 
 import androidx.compose.runtime.State
@@ -5,7 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import de.nilsdruyen.myboardgames.model.BoardGameRepository
+import de.nilsdruyen.myboardgames.data.BoardGameRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,8 +1,13 @@
-package de.nilsdruyen.myboardgames.model.database
+/*
+ * Created by Nils Druyen on 12-29-2021
+ * Copyright © 2021 Nils Druyen. All rights reserved.
+ */
 
-import de.nilsdruyen.myboardgames.model.BoardGame
-import de.nilsdruyen.myboardgames.model.database.daos.BoardGameDao
-import de.nilsdruyen.myboardgames.model.database.transformers.BoardGameTransformer
+package de.nilsdruyen.myboardgames.data.database
+
+import de.nilsdruyen.myboardgames.data.database.daos.BoardGameDao
+import de.nilsdruyen.myboardgames.data.database.transformers.BoardGameTransformer
+import de.nilsdruyen.myboardgames.data.models.BoardGame
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
