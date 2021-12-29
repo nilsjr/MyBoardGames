@@ -53,7 +53,7 @@ android {
 
 val composeVersion = libs.versions.compose.get()
 dependencies {
-  implementation("androidx.core:core-ktx:1.7.0")
+  implementation(libs.core)
 
   implementation(libs.coroutines)
 

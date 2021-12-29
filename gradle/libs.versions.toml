@@ -1,0 +1,25 @@
+[versions]
+kotlin = "1.6.10"
+coroutines = "1.6.0"
+compose = "1.1.0-rc01"
+composeCompiler = "1.1.0-rc02"
+room = "2.4.0"
+moshi = "1.13.0"
+hilt = "2.40.5"
+lifecycle = "2.4.0"
+
+[libraries]
+core = { module = "androidx.core:core-ktx", version = "1.8.0-alpha02" }
+coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+lifecycleRuntime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+room = { module = "androidx.room:room-ktx", version.ref = "room" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+moshiCompiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hiltNavigation = { module = "androidx.hilt:hilt-navigation-compose", version = "1.0.0-rc01" }
+# common
+timber = "com.jakewharton.timber:timber:5.0.1"
