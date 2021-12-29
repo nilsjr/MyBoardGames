@@ -83,6 +83,7 @@ dependencies {
   implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
   debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
   debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
+  implementation(libs.composeNavigation)
 
   dependencyUpdatesConfig(libs.desugar)
   coreLibraryDesugaring(libs.desugar)
@@ -96,4 +97,6 @@ dependencies {
 
   implementation(libs.moshi)
   kapt(libs.moshiCompiler)
+
+  implementation(libs.accompanistInsets)
 }
