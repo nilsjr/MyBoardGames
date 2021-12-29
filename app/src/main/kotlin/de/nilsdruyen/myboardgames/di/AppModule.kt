@@ -17,10 +17,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class AppModule {
-
-
-}
+abstract class AppModule
 
 @Module
 @InstallIn(SingletonComponent::class)

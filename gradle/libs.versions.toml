@@ -10,6 +10,7 @@ lifecycle = "2.4.0"
 
 [libraries]
 core = { module = "androidx.core:core-ktx", version = "1.8.0-alpha02" }
+desugar = { module = "com.android.tools:desugar_jdk_libs", version = "1.1.5" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 lifecycleRuntime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }

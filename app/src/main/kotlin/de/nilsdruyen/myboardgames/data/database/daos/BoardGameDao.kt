@@ -6,6 +6,8 @@
 package de.nilsdruyen.myboardgames.data.database.daos
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import de.nilsdruyen.myboardgames.data.database.entities.BoardGameEntity
 import kotlinx.coroutines.flow.Flow
@@ -14,5 +16,8 @@ import kotlinx.coroutines.flow.Flow
 interface BoardGameDao {
 
   @Query("SELECT * FROM board_game_table")
-  fun getCharacter(): Flow<List<BoardGameEntity>>
+  fun getGames(): Flow<List<BoardGameEntity>>
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun addBoardGame(game: BoardGameEntity)
 }

@@ -5,9 +5,20 @@
 
 package de.nilsdruyen.myboardgames.data.models
 
+import java.time.LocalDate
+
 data class BoardGame(
   val id: String,
   val name: String,
-  val rating: Int,
-  val location: Location,
+  val type: GameType,
+  val players: Int,
+  val playTimeInMin: Int,
+  val score: Int,
+  val manufacturer: String,
+  val addedDate: LocalDate,
+  val purchasedAt: LocalDate,
+  val linkedGameIds: List<String> = emptyList(),
+  val ean: String = "",
+  val played: Int = 0,
+  val notes: String = "",
 )

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "77b7410d2857ab115f2686bfb7f4b412",
+    "identityHash": "3bcafc2dfcb3cd2fcdf9fdb101dae17c",
     "entities": [
       {
         "tableName": "board_game_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `rating` INTEGER NOT NULL, `location` TEXT NOT NULL, `ean` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `players` INTEGER NOT NULL, `playTimeInMin` INTEGER NOT NULL, `score` INTEGER NOT NULL, `manufacturer` TEXT NOT NULL, `addedDate` INTEGER NOT NULL, `purchasedAt` INTEGER NOT NULL, `linkedGameIds` TEXT NOT NULL, `ean` TEXT NOT NULL, `played` INTEGER NOT NULL, `notes` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -21,20 +21,68 @@
             "notNull": true
           },
           {
-            "fieldPath": "rating",
-            "columnName": "rating",
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "players",
+            "columnName": "players",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "location",
-            "columnName": "location",
+            "fieldPath": "playTimeInMin",
+            "columnName": "playTimeInMin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "manufacturer",
+            "columnName": "manufacturer",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addedDate",
+            "columnName": "addedDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "purchasedAt",
+            "columnName": "purchasedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "linkedGameIds",
+            "columnName": "linkedGameIds",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "ean",
             "columnName": "ean",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "played",
+            "columnName": "played",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -52,7 +100,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '77b7410d2857ab115f2686bfb7f4b412')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3bcafc2dfcb3cd2fcdf9fdb101dae17c')"
     ]
   }
 }

@@ -5,7 +5,6 @@
 
 package de.nilsdruyen.myboardgames.data.models
 
-data class Location(
-  val closet: String,
-  val drawer: String,
-)
+enum class GameType {
+  Dice, Board, Card, Escape, Puzzle,
+}

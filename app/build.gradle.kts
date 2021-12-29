@@ -21,11 +21,18 @@ android {
     }
   }
   compileOptions {
+    isCoreLibraryDesugaringEnabled = true
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
   }
-  kotlinOptions {
-    jvmTarget = "11"
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {
+    kotlinOptions {
+      jvmTarget = "11"
+      allWarningsAsErrors = true
+      freeCompilerArgs = listOf(
+        "-Xopt-in=kotlin.RequiresOptIn"
+      )
+    }
   }
   sourceSets.getByName("main").java.srcDirs("src/main/kotlin")
   buildFeatures {
@@ -45,12 +52,21 @@ android {
     }
   }
   kapt {
+    correctErrorTypes = true
     arguments {
       arg("room.schemaLocation", "$projectDir/schemas")
     }
   }
 }
 
+configurations {
+  // https://github.com/ben-manes/gradle-versions-plugin/issues/393#issuecomment-726275755
+  create("dependencyUpdatesConfig") {
+    isCanBeResolved = false
+    isCanBeConsumed = true
+  }
+}
+val dependencyUpdatesConfig by configurations
 val composeVersion = libs.versions.compose.get()
 dependencies {
   implementation(libs.core)
@@ -68,6 +84,9 @@ dependencies {
   debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
   debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
 
+  dependencyUpdatesConfig(libs.desugar)
+  coreLibraryDesugaring(libs.desugar)
+
   implementation(libs.hilt)
   implementation(libs.hiltNavigation)
   kapt(libs.hiltCompiler)
@@ -77,7 +96,4 @@ dependencies {
 
   implementation(libs.moshi)
   kapt(libs.moshiCompiler)
-}
-kapt {
-  correctErrorTypes = true
 }

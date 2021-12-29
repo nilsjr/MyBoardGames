@@ -18,5 +18,5 @@ class BoardGameDbDatasourceImpl @Inject constructor(
 ) : BoardGameDbDatasource {
 
   override fun observeGames(): Flow<List<BoardGame>> =
-    boardGameDao.getCharacter().map { it.map(transformer::toModel) }
+    boardGameDao.getGames().map { it.map(transformer::toModel) }
 }

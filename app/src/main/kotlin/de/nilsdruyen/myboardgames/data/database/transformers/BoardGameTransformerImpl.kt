@@ -6,9 +6,7 @@
 package de.nilsdruyen.myboardgames.data.database.transformers
 
 import de.nilsdruyen.myboardgames.data.database.entities.BoardGameEntity
-import de.nilsdruyen.myboardgames.data.database.entities.LocationEntity
 import de.nilsdruyen.myboardgames.data.models.BoardGame
-import de.nilsdruyen.myboardgames.data.models.Location
 import javax.inject.Inject
 
 class BoardGameTransformerImpl @Inject constructor() : BoardGameTransformer {
@@ -17,8 +15,17 @@ class BoardGameTransformerImpl @Inject constructor() : BoardGameTransformer {
     BoardGame(
       id = id,
       name = name,
-      rating = rating,
-      location = Location(location.closet, location.drawer)
+      type = type,
+      players = players,
+      playTimeInMin = playTimeInMin,
+      score = score,
+      manufacturer = manufacturer,
+      addedDate = addedDate,
+      purchasedAt = purchasedAt,
+      linkedGameIds = linkedGameIds,
+      ean = ean,
+      played = played,
+      notes = notes
     )
   }
 
@@ -26,9 +33,17 @@ class BoardGameTransformerImpl @Inject constructor() : BoardGameTransformer {
     BoardGameEntity(
       id = id,
       name = name,
-      rating = rating,
-      location = LocationEntity(location.closet, location.drawer),
-      ean = ""
+      type = type,
+      players = players,
+      playTimeInMin = playTimeInMin,
+      score = score,
+      manufacturer = manufacturer,
+      addedDate = addedDate,
+      purchasedAt = purchasedAt,
+      linkedGameIds = linkedGameIds,
+      ean = ean,
+      played = played,
+      notes = notes
     )
   }
 }
