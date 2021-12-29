@@ -5,10 +5,10 @@
 
 package de.nilsdruyen.myboardgames.ui
 
-import de.nilsdruyen.myboardgames.base.MviState
+import de.nilsdruyen.myboardgames.base.ViewState
 import de.nilsdruyen.myboardgames.data.models.BoardGame
 
-sealed class BoardGameState : MviState {
+sealed class BoardGameState : ViewState {
 
   object Loading : BoardGameState()
 

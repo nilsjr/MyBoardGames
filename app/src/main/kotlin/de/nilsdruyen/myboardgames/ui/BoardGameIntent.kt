@@ -5,9 +5,9 @@
 
 package de.nilsdruyen.myboardgames.ui
 
-import de.nilsdruyen.myboardgames.base.ViewAction
+import de.nilsdruyen.myboardgames.base.ViewIntent
 
-sealed class BoardGameAction : ViewAction {
+sealed class BoardGameIntent : ViewIntent {
 
-  object LoadAction : BoardGameAction()
+  object LoadBoardGames : BoardGameIntent()
 }

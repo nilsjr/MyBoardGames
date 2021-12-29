@@ -5,4 +5,4 @@
 
 package de.nilsdruyen.myboardgames.base
 
-interface MviAction
+interface ViewAction
