@@ -21,10 +21,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -78,6 +80,14 @@ fun Overview(
         scrollBehavior = scrollBehavior
       )
     },
+    floatingActionButton = {
+      SmallFloatingActionButton(
+        onClick = { /* do something */ },
+      ) {
+        Icon(Icons.Filled.Add, contentDescription = "Localized description")
+      }
+    },
+    floatingActionButtonPosition = FabPosition.End,
     content = { innerPadding ->
       Crossfade(targetState = state) { state ->
         when (state) {
@@ -132,15 +142,15 @@ fun GameItem(game: BoardGame, onGameClicked: (BoardGame) -> Unit) {
       .clickable { onGameClicked(game) }
       .fillMaxWidth()
       .padding(horizontal = 8.dp),
-    backgroundColor = MaterialTheme.colorScheme.primary,
-    shape = RoundedCornerShape(8.dp),
-    elevation = 4.dp,
-    contentColor = MaterialTheme.colorScheme.onPrimary
+//    backgroundColor = MaterialTheme.colorScheme.surface,
+//    contentColor = MaterialTheme.colorScheme.primary,
+    shape = RoundedCornerShape(16.dp),
+    elevation = 6.dp
   ) {
-    Column {
+    Column(modifier = Modifier.padding(4.dp)) {
       Text(
         text = game.name,
-        style = MaterialTheme.typography.titleMedium,
+        style = MaterialTheme.typography.headlineLarge,
         modifier = Modifier.padding(8.dp)
       )
       Text(

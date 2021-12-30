@@ -8,6 +8,7 @@ plugins {
   kotlin("android")
   kotlin("kapt")
   id("dagger.hilt.android.plugin")
+  id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -113,4 +114,10 @@ dependencies {
 
   implementation(libs.timber)
   implementation(libs.lottie)
+
+  implementation(platform("com.google.firebase:firebase-bom:29.0.3"))
+//  implementation("com.google.firebase:firebase-analytics-ktx")
+  implementation("com.google.firebase:firebase-crashlytics-ktx")
 }
+
+apply(plugin = "com.google.gms.google-services")

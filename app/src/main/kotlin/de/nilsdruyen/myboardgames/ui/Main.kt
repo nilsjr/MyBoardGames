@@ -8,12 +8,15 @@ package de.nilsdruyen.myboardgames.ui
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +30,7 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 import com.google.accompanist.navigation.material.bottomSheet
 import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import de.nilsdruyen.myboardgames.ui.add.AddGame
 import de.nilsdruyen.myboardgames.ui.detail.GameDetail
 import de.nilsdruyen.myboardgames.ui.overview.Overview
@@ -42,15 +46,17 @@ fun MyBoardGames() {
   val bottomSheetNavigator = rememberBottomSheetNavigator()
   val navController = rememberAnimatedNavController(bottomSheetNavigator)
 
-//  val systemUiController = rememberSystemUiController()
-//  val useDarkIcons = isSystemInDarkTheme()
-//
-//  SideEffect {
-//    systemUiController.setSystemBarsColor(
-//      color = Color.Transparent,
-//      darkIcons = useDarkIcons
-//    )
-//  }
+  val systemUiController = rememberSystemUiController()
+  val useDarkIcons = !isSystemInDarkTheme()
+
+  val surfaceColor = MaterialTheme.colorScheme.surface
+
+  SideEffect {
+    systemUiController.setSystemBarsColor(
+      color = surfaceColor,
+      darkIcons = useDarkIcons
+    )
+  }
 
   ProvideWindowInsets {
     ModalBottomSheetLayout(bottomSheetNavigator) {
@@ -94,7 +100,6 @@ fun MyBoardGames() {
               Screen.AddGame.path -> slideIntoContainer(
                 AnimatedContentScope.SlideDirection.Down,
                 animationSpec = tween(NavigationDuration),
-//                initialOffset = { (it * 0.2).toInt() }
               )
               else -> null
             }
@@ -109,7 +114,6 @@ fun MyBoardGames() {
               Screen.AddGame.path -> slideOutOfContainer(
                 AnimatedContentScope.SlideDirection.Up,
                 animationSpec = tween(NavigationDuration),
-//                targetOffset = { (it * 0.2).toInt() }
               )
               else -> null
             }

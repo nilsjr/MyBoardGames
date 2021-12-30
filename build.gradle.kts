@@ -1,3 +1,8 @@
+/*
+ * Created by Nils Druyen on 12-30-2021
+ * Copyright © 2021 Nils Druyen. All rights reserved.
+ */
+
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
@@ -7,6 +12,9 @@ plugins {
   id("dagger.hilt.android.plugin") version "2.40.5" apply false
   id("com.github.ben-manes.versions") version "0.39.0"
   id("io.gitlab.arturbosch.detekt") version "1.19.0"
+
+  id("com.google.gms.google-services") version "4.3.10" apply false
+  id("com.google.firebase.crashlytics") version "2.8.1" apply false
 }
 
 subprojects {
