@@ -63,13 +63,13 @@ abstract class BaseViewModel<Action : ViewAction, State : ViewState, Intent : Vi
     _state.value = newState
   }
 
-  protected fun setAction(action: Action) {
+  fun setAction(action: Action) {
     viewModelScope.launch {
       _event.emit(action)
     }
   }
 
-  protected fun setIntent(builder: () -> Intent) {
+  fun setIntent(builder: () -> Intent) {
     viewModelScope.launch {
       _intent.send(builder())
     }

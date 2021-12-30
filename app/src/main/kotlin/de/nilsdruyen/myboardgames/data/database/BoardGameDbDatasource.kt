@@ -11,4 +11,6 @@ import kotlinx.coroutines.flow.Flow
 interface BoardGameDbDatasource {
 
   fun observeGames(): Flow<List<BoardGame>>
+
+  suspend fun addGame(boardGame: BoardGame)
 }

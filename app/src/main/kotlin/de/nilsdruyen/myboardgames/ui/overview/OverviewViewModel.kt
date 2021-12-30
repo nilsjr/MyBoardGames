@@ -11,6 +11,7 @@ import de.nilsdruyen.myboardgames.base.BaseViewModel
 import de.nilsdruyen.myboardgames.data.BoardGameRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,6 +31,7 @@ class OverviewViewModel @Inject constructor(
     viewModelScope.launch {
       val list = repository.observeList().first()
       setState {
+        Timber.d("state: ${list.size}")
         if (list.isEmpty()) {
           OverviewContract.OverviewState.EmptyList
         } else {

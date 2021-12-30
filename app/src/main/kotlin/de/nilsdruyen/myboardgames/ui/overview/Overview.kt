@@ -15,8 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,7 +36,7 @@ import de.nilsdruyen.myboardgames.data.models.BoardGame
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Overview(viewModel: OverviewViewModel, showGame: (BoardGame) -> Unit) {
+fun Overview(viewModel: OverviewViewModel, showGame: (BoardGame) -> Unit, addGame: () -> Unit) {
   val state by viewModel.state.collectAsState()
   val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
 
@@ -46,19 +45,19 @@ fun Overview(viewModel: OverviewViewModel, showGame: (BoardGame) -> Unit) {
     topBar = {
       SmallTopAppBar(
         title = { Text("Mein Spiele") },
-        navigationIcon = {
-          IconButton(onClick = { /* doSomething() */ }) {
-            Icon(
-              imageVector = Icons.Filled.Menu,
-              contentDescription = "Localized description"
-            )
-          }
-        },
+//        navigationIcon = {
+//          IconButton(onClick = { /* doSomething() */ }) {
+//            Icon(
+//              imageVector = Icons.Filled.Menu,
+//              contentDescription = "Localized description"
+//            )
+//          }
+//        },
         actions = {
-          IconButton(onClick = { /* doSomething() */ }) {
+          IconButton(onClick = { addGame() }) {
             Icon(
-              imageVector = Icons.Filled.Favorite,
-              contentDescription = "Localized description"
+              imageVector = Icons.Filled.Add,
+              contentDescription = "Add Game"
             )
           }
         },
@@ -68,14 +67,14 @@ fun Overview(viewModel: OverviewViewModel, showGame: (BoardGame) -> Unit) {
     content = { innerPadding ->
       when (state) {
         is OverviewContract.OverviewState.Loading -> {
-          Text("loading")
-        }
-        is OverviewContract.OverviewState.AllGames -> {
-          BoardGameList(
-            innerPadding = innerPadding,
-            (state as OverviewContract.OverviewState.AllGames).games,
-            showGame
-          )
+          Box(modifier = Modifier.fillMaxSize()) {
+            Text(
+              "laden...",
+              modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.Center)
+            )
+          }
         }
         OverviewContract.OverviewState.EmptyList -> {
           Box(modifier = Modifier.fillMaxSize()) {
@@ -86,6 +85,13 @@ fun Overview(viewModel: OverviewViewModel, showGame: (BoardGame) -> Unit) {
                 .align(Alignment.Center)
             )
           }
+        }
+        is OverviewContract.OverviewState.AllGames -> {
+          BoardGameList(
+            innerPadding = innerPadding,
+            (state as OverviewContract.OverviewState.AllGames).games,
+            showGame
+          )
         }
       }
     }

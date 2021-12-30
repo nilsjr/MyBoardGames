@@ -9,20 +9,34 @@ hilt = "2.40.5"
 lifecycle = "2.4.0"
 
 [libraries]
+# android
 core = { module = "androidx.core:core-ktx", version = "1.8.0-alpha02" }
 desugar = { module = "com.android.tools:desugar_jdk_libs", version = "1.1.5" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+startup = "androidx.startup:startup-runtime:1.1.0"
+# lifecycle
 lifecycleRuntime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+# room
 room = { module = "androidx.room:room-ktx", version.ref = "room" }
 roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+#moshi
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshiCompiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+# hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hiltNavigation = { module = "androidx.hilt:hilt-navigation-compose", version = "1.0.0-rc01" }
+# compose
+composeActivity = "androidx.activity:activity-compose:1.4.0"
+composeUi = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+composeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+composeMaterial = { module = "androidx.compose.material:material", version.ref = "compose" }
+composeMaterial3 = { module = "androidx.compose.material3:material3", version = "1.0.0-alpha02" }
 composeNavigation = { module = "androidx.navigation:navigation-compose", version = "2.4.0-rc01" }
+constraintCompose = { module = "androidx.constraintlayout:constraintlayout-compose", version = "1.0.0-rc01" }
+# utils
 accompanistInsets = { module = "com.google.accompanist:accompanist-insets", version = "0.22.0-rc" }
-# common
 timber = "com.jakewharton.timber:timber:5.0.1"

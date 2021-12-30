@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
+import de.nilsdruyen.myboardgames.ui.add.AddGame
 import de.nilsdruyen.myboardgames.ui.overview.Overview
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,6 +27,17 @@ fun MyBoardGames() {
           viewModel = hiltViewModel(),
           showGame = {
             navController.navigate("${Screen.GameDetails.path}/${it.id}")
+          },
+          addGame = {
+            navController.navigate(Screen.AddGame.path)
+          }
+        )
+      }
+      composable(Screen.AddGame.path) {
+        AddGame(
+          viewModel = hiltViewModel(),
+          onBackPressed = {
+            navController.navigateUp()
           }
         )
       }

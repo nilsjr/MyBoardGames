@@ -19,4 +19,8 @@ class BoardGameDbDatasourceImpl @Inject constructor(
 
   override fun observeGames(): Flow<List<BoardGame>> =
     boardGameDao.getGames().map { it.map(transformer::toModel) }
+
+  override suspend fun addGame(boardGame: BoardGame) {
+    boardGameDao.addBoardGame(transformer.toEntity(boardGame))
+  }
 }

@@ -17,6 +17,6 @@ class BoardGameRepositoryImpl @Inject constructor(
   override fun observeList(): Flow<List<BoardGame>> = datasource.observeGames()
 
   override suspend fun add(boardGame: BoardGame) {
-    TODO("Not yet implemented")
+    datasource.addGame(boardGame)
   }
 }

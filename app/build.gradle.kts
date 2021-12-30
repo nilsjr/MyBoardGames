@@ -76,14 +76,16 @@ dependencies {
   implementation(libs.lifecycleRuntime)
   implementation(libs.viewModel)
   implementation(libs.viewModelCompose)
-  implementation("androidx.activity:activity-compose:1.4.0")
+  implementation(libs.composeActivity)
 
-  implementation("androidx.compose.ui:ui:$composeVersion")
-  implementation("androidx.compose.material3:material3:1.0.0-alpha02")
-  implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-  debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
-  debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
+  implementation(libs.composeUi)
+  implementation(libs.composeMaterial)
+  implementation(libs.composeMaterial3)
+  implementation(libs.composeUiToolingPreview)
   implementation(libs.composeNavigation)
+  implementation(libs.constraintCompose)
+
+  debugImplementation(libs.composeUiTooling)
 
   dependencyUpdatesConfig(libs.desugar)
   coreLibraryDesugaring(libs.desugar)
@@ -99,4 +101,5 @@ dependencies {
   kapt(libs.moshiCompiler)
 
   implementation(libs.accompanistInsets)
+  implementation(libs.timber)
 }
