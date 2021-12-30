@@ -10,21 +10,20 @@ import de.nilsdruyen.myboardgames.base.ViewIntent
 import de.nilsdruyen.myboardgames.base.ViewState
 import de.nilsdruyen.myboardgames.data.models.BoardGame
 
-interface GameDetailContract {
+interface GameDetailContract
 
-  sealed class GameDetailAction : ViewAction {
+sealed interface GameDetailAction : ViewAction
 
-    data class LoadGame(val id: String) : GameDetailAction()
+data class LoadGame(val id: String) : GameDetailAction
 
-    data class DeleteGame(val id: String) : GameDetailAction()
-  }
+data class DeleteGame(val id: String) : GameDetailAction
 
-  sealed class GameDetailState : ViewState {
+sealed interface GameDetailState : ViewState
 
-    object Loading : GameDetailState()
+object Loading : GameDetailState
 
-    data class Details(val game: BoardGame) : GameDetailState()
-  }
+data class Details(val game: BoardGame) : GameDetailState
 
-  sealed class GameDetailIntent : ViewIntent
-}
+object GameDeleted : GameDetailState
+
+sealed interface GameDetailIntent : ViewIntent

@@ -9,6 +9,7 @@ import androidx.annotation.WorkerThread
 import de.nilsdruyen.myboardgames.data.database.BoardGameDbDatasource
 import de.nilsdruyen.myboardgames.data.models.BoardGame
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class BoardGameRepositoryImpl @Inject constructor(
@@ -16,11 +17,17 @@ class BoardGameRepositoryImpl @Inject constructor(
 ) : BoardGameRepository {
 
   @WorkerThread
-  override fun observeList(): Flow<List<BoardGame>> = datasource.observeGames()
+  override fun observeList(): Flow<List<BoardGame>> = datasource.observeGames().map { list ->
+    list.sortedBy { it.name.lowercase() }
+  }
 
   override suspend fun get(id: String): BoardGame = datasource.getGame(id)
 
   override suspend fun add(boardGame: BoardGame) {
     datasource.addGame(boardGame)
+  }
+
+  override suspend fun delete(id: String) {
+    datasource.deleteGame(id)
   }
 }

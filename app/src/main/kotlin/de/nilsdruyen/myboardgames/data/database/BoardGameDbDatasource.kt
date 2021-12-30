@@ -15,4 +15,6 @@ interface BoardGameDbDatasource {
   suspend fun getGame(id: String): BoardGame
 
   suspend fun addGame(boardGame: BoardGame)
+
+  suspend fun deleteGame(id: String)
 }

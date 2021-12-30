@@ -13,27 +13,25 @@ import javax.inject.Inject
 @HiltViewModel
 class GameDetailViewModel @Inject constructor(
   private val repository: BoardGameRepository
-) : BaseViewModel<GameDetailContract.GameDetailAction,
-        GameDetailContract.GameDetailState,
-        GameDetailContract.GameDetailIntent>() {
+) : BaseViewModel<GameDetailAction, GameDetailState, GameDetailIntent>() {
 
-  override fun createInitialState(): GameDetailContract.GameDetailState =
-    GameDetailContract.GameDetailState.Loading
+  override fun createInitialState(): GameDetailState = Loading
 
-  override fun intentToAction(intent: GameDetailContract.GameDetailIntent): GameDetailContract.GameDetailAction {
+  override fun intentToAction(intent: GameDetailIntent): GameDetailAction {
     TODO("Not yet implemented")
   }
 
-  override fun handleAction(action: GameDetailContract.GameDetailAction) {
+  override fun handleAction(action: GameDetailAction) {
     launchOnUI {
       when (action) {
-        is GameDetailContract.GameDetailAction.LoadGame -> {
+        is LoadGame -> {
           val game = repository.get(action.id)
-          setState {
-            GameDetailContract.GameDetailState.Details(game)
-          }
+          setState { Details(game) }
         }
-        is GameDetailContract.GameDetailAction.DeleteGame -> {}
+        is DeleteGame -> {
+          repository.delete(action.id)
+          setState { GameDeleted }
+        }
       }
     }
   }

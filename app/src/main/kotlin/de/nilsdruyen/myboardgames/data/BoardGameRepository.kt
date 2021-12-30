@@ -17,4 +17,6 @@ interface BoardGameRepository {
   suspend fun get(id: String): BoardGame
 
   suspend fun add(boardGame: BoardGame)
+
+  suspend fun delete(id: String)
 }

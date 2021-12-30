@@ -26,4 +26,8 @@ class BoardGameDbDatasourceImpl @Inject constructor(
   override suspend fun addGame(boardGame: BoardGame) {
     boardGameDao.addBoardGame(transformer.toEntity(boardGame))
   }
+
+  override suspend fun deleteGame(id: String) {
+    boardGameDao.deleteGame(id)
+  }
 }

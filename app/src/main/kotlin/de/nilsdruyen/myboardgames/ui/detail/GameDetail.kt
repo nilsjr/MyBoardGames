@@ -10,16 +10,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -31,8 +36,43 @@ import de.nilsdruyen.myboardgames.data.models.BoardGame
 fun GameDetail(gameId: String, viewModel: GameDetailViewModel, onBackPressed: () -> Unit) {
   val state by viewModel.state.collectAsState()
 
+  if (state is GameDeleted) {
+    onBackPressed()
+  }
+
+  val openDeleteDialog = remember { mutableStateOf(false) }
+
   LaunchedEffect(key1 = gameId) {
-    viewModel.setAction(GameDetailContract.GameDetailAction.LoadGame(gameId))
+    viewModel.setAction(LoadGame(gameId))
+  }
+
+  if (openDeleteDialog.value) {
+    AlertDialog(
+      onDismissRequest = {
+        openDeleteDialog.value = false
+      },
+      title = {
+        Text("Löschen")
+      },
+      text = {
+        Text("Möchten Sie das Spiel wirklich löschen?")
+      },
+      confirmButton = {
+        TextButton(onClick = {
+          viewModel.setAction(DeleteGame(gameId))
+          openDeleteDialog.value = false
+        }) {
+          Text("Löschen")
+        }
+      },
+      dismissButton = {
+        TextButton(onClick = {
+          openDeleteDialog.value = false
+        }) {
+          Text("Nein")
+        }
+      }
+    )
   }
 
   Scaffold(
@@ -46,12 +86,22 @@ fun GameDetail(gameId: String, viewModel: GameDetailViewModel, onBackPressed: ()
               contentDescription = "Backpress"
             )
           }
-        }
+        },
+        actions = {
+          IconButton(onClick = {
+            openDeleteDialog.value = true
+          }) {
+            Icon(
+              imageVector = Icons.Filled.Delete,
+              contentDescription = "Add Game"
+            )
+          }
+        },
       )
     }
   ) {
-    if (state is GameDetailContract.GameDetailState.Details) {
-      Detail((state as GameDetailContract.GameDetailState.Details).game)
+    if (state is Details) {
+      Detail((state as Details).game)
     } else {
       Loading()
     }

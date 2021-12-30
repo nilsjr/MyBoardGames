@@ -27,11 +27,6 @@ abstract class DataModule {
   @Binds
   abstract fun bindsBoardGameDbDatasource(datasource: BoardGameDbDatasourceImpl):
           BoardGameDbDatasource
-}
-
-@Module
-@InstallIn(ViewModelComponent::class)
-abstract class TransformerModule {
 
   @Binds
   abstract fun bindsBoardGameTransformer(transformer: BoardGameTransformerImpl):

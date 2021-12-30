@@ -23,4 +23,7 @@ interface BoardGameDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   suspend fun addBoardGame(game: BoardGameEntity)
+
+  @Query("DELETE FROM board_game_table WHERE id = :id")
+  suspend fun deleteGame(id: String)
 }
