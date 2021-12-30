@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -92,11 +93,13 @@ fun AddGame(
           .padding(8.dp)
           .focusable(),
         keyboardOptions = KeyboardOptions(
+          capitalization = KeyboardCapitalization.Words,
           keyboardType = KeyboardType.Text,
           imeAction = ImeAction.Done
         ),
         keyboardActions = KeyboardActions(
           onDone = {
+            keyboardController?.hide()
             viewModel.setAction(AddGameContract.AddGameAction.Add(gameName))
           }
         ),

@@ -27,3 +27,7 @@ naming:
   FunctionNaming:
     ignoreAnnotated:
       - 'Composable'
+
+complexity:
+  LongMethod:
+    threshold: 80

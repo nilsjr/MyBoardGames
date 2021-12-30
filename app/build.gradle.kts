@@ -1,3 +1,8 @@
+/*
+ * Created by Nils Druyen on 12-30-2021
+ * Copyright © 2021 Nils Druyen. All rights reserved.
+ */
+
 plugins {
   id("com.android.application")
   kotlin("android")
@@ -80,6 +85,7 @@ dependencies {
 
   implementation(libs.composeUi)
   implementation(libs.composeMaterial)
+  implementation(libs.composeMaterialIcons)
   implementation(libs.composeMaterial3)
   implementation(libs.composeUiToolingPreview)
   implementation(libs.composeNavigation)
@@ -100,6 +106,11 @@ dependencies {
   implementation(libs.moshi)
   kapt(libs.moshiCompiler)
 
+  implementation(libs.accompanistSystemUi)
   implementation(libs.accompanistInsets)
+  implementation(libs.accompanistNavAnim)
+  implementation(libs.accompanistNavMaterial)
+
   implementation(libs.timber)
+  implementation(libs.lottie)
 }

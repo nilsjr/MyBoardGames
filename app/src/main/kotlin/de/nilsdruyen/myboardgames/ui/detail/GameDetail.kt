@@ -8,6 +8,7 @@ package de.nilsdruyen.myboardgames.ui.detail
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
@@ -25,7 +26,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -111,7 +111,7 @@ fun GameDetail(gameId: String, viewModel: GameDetailViewModel, onBackPressed: ()
 @Composable
 fun Loading() {
   Box(modifier = Modifier.fillMaxSize()) {
-    Text(text = "Lädt...", modifier = Modifier.align(Alignment.Center))
+    CircularProgressIndicator()
   }
 }
 
