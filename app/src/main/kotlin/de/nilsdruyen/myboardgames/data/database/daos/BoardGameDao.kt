@@ -18,6 +18,9 @@ interface BoardGameDao {
   @Query("SELECT * FROM board_game_table")
   fun getGames(): Flow<List<BoardGameEntity>>
 
+  @Query("SELECT * FROM board_game_table WHERE id = :id")
+  suspend fun getGame(id: String): BoardGameEntity
+
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   suspend fun addBoardGame(game: BoardGameEntity)
 }

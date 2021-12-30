@@ -25,6 +25,7 @@ import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -39,6 +40,10 @@ import de.nilsdruyen.myboardgames.data.models.BoardGame
 fun Overview(viewModel: OverviewViewModel, showGame: (BoardGame) -> Unit, addGame: () -> Unit) {
   val state by viewModel.state.collectAsState()
   val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
+
+  LaunchedEffect(key1 = Unit, block = {
+    viewModel.setAction(OverviewContract.OverviewAction.LoadGames)
+  })
 
   Scaffold(
     modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),

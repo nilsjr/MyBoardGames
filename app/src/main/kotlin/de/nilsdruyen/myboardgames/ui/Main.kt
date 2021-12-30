@@ -8,11 +8,14 @@ package de.nilsdruyen.myboardgames.ui
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.accompanist.insets.ProvideWindowInsets
 import de.nilsdruyen.myboardgames.ui.add.AddGame
+import de.nilsdruyen.myboardgames.ui.detail.GameDetail
 import de.nilsdruyen.myboardgames.ui.overview.Overview
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,17 +44,17 @@ fun MyBoardGames() {
           }
         )
       }
-//      composable(
-//        route = Screen.GameDetails.pathWithArgument,
-//        arguments = listOf(navArgument(Screen.GameDetails.argument) { type = NavType.StringType })
-//      ) { backStackEntry ->
-//        val gameId =
-//          backStackEntry.arguments?.getLong(Screen.GameDetails.argument) ?: return@composable
-//
-//        PosterDetails(posterId = posterId, viewModel = hiltViewModel()) {
-//          navController.navigateUp()
-//        }
-//      }
+      composable(
+        route = Screen.GameDetails.pathWithArgument,
+        arguments = listOf(navArgument(Screen.GameDetails.argument) { type = NavType.StringType })
+      ) { backStackEntry ->
+        val gameId =
+          backStackEntry.arguments?.getString(Screen.GameDetails.argument) ?: return@composable
+
+        GameDetail(gameId = gameId, viewModel = hiltViewModel()) {
+          navController.navigateUp()
+        }
+      }
     }
   }
 }

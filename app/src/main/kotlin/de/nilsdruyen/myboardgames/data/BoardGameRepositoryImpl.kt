@@ -5,6 +5,7 @@
 
 package de.nilsdruyen.myboardgames.data
 
+import androidx.annotation.WorkerThread
 import de.nilsdruyen.myboardgames.data.database.BoardGameDbDatasource
 import de.nilsdruyen.myboardgames.data.models.BoardGame
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +15,10 @@ class BoardGameRepositoryImpl @Inject constructor(
   private val datasource: BoardGameDbDatasource
 ) : BoardGameRepository {
 
+  @WorkerThread
   override fun observeList(): Flow<List<BoardGame>> = datasource.observeGames()
+
+  override suspend fun get(id: String): BoardGame = datasource.getGame(id)
 
   override suspend fun add(boardGame: BoardGame) {
     datasource.addGame(boardGame)

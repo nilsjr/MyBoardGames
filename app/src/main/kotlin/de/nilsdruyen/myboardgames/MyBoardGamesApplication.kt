@@ -8,7 +8,6 @@ package de.nilsdruyen.myboardgames
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 import de.nilsdruyen.myboardgames.utils.DebugTree
-import timber.log.Timber
 import timber.log.Timber.Forest.plant
 
 @HiltAndroidApp
@@ -20,6 +19,5 @@ class MyBoardGamesApplication : Application() {
     if (BuildConfig.DEBUG) {
       plant(DebugTree())
     }
-    Timber.d("App started!")
   }
 }

@@ -7,6 +7,7 @@ package de.nilsdruyen.myboardgames.ui.add
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.icons.Icons
@@ -24,6 +25,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import timber.log.Timber
@@ -35,7 +40,6 @@ fun AddGame(
   onBackPressed: () -> Unit,
 ) {
   var gameName by remember { mutableStateOf("") }
-
   val state by viewModel.state.collectAsState()
 
   if (state == AddGameContract.AddGameState.GameAdded) {
@@ -64,6 +68,7 @@ fun AddGame(
 
       OutlinedTextField(
         value = gameName,
+        textStyle = TextStyle(Color.White),
         onValueChange = { gameName = it },
         label = { Text("Name des Spiels") },
         modifier = Modifier
@@ -72,7 +77,12 @@ fun AddGame(
             start.linkTo(parent.start)
             end.linkTo(parent.end)
           }
-          .padding(16.dp)
+          .padding(8.dp),
+        keyboardOptions = KeyboardOptions(
+          keyboardType = KeyboardType.Text,
+          imeAction = ImeAction.Done
+        ),
+        singleLine = true,
       )
 
       Button(

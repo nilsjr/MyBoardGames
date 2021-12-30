@@ -5,12 +5,10 @@
 
 package de.nilsdruyen.myboardgames.ui.overview
 
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.nilsdruyen.myboardgames.base.BaseViewModel
 import de.nilsdruyen.myboardgames.data.BoardGameRepository
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -23,28 +21,26 @@ class OverviewViewModel @Inject constructor(
   override fun createInitialState(): OverviewContract.OverviewState =
     OverviewContract.OverviewState.Loading
 
-  init {
-    loadGames()
-  }
-
-  private fun loadGames() {
-    viewModelScope.launch {
-      val list = repository.observeList().first()
-      setState {
-        Timber.d("state: ${list.size}")
-        if (list.isEmpty()) {
-          OverviewContract.OverviewState.EmptyList
-        } else {
-          OverviewContract.OverviewState.AllGames(list)
-        }
-      }
-    }
-  }
-
   override fun intentToAction(intent: OverviewContract.OverviewIntent): OverviewContract.OverviewAction =
     when (intent) {
       is OverviewContract.OverviewIntent.LoadOverview -> OverviewContract.OverviewAction.LoadGames
     }
 
-  override fun handleAction(action: OverviewContract.OverviewAction) {}
+  override fun handleAction(action: OverviewContract.OverviewAction) {
+    launchOnUI {
+      when (action) {
+        OverviewContract.OverviewAction.LoadGames -> {
+          val list = repository.observeList().first()
+          setState {
+            Timber.d("state: ${list.size}")
+            if (list.isEmpty()) {
+              OverviewContract.OverviewState.EmptyList
+            } else {
+              OverviewContract.OverviewState.AllGames(list)
+            }
+          }
+        }
+      }
+    }
+  }
 }

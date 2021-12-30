@@ -12,5 +12,7 @@ interface BoardGameDbDatasource {
 
   fun observeGames(): Flow<List<BoardGame>>
 
+  suspend fun getGame(id: String): BoardGame
+
   suspend fun addGame(boardGame: BoardGame)
 }
