@@ -32,6 +32,7 @@ hiltNavigation = { module = "androidx.hilt:hilt-navigation-compose", version = "
 # compose
 composeActivity = "androidx.activity:activity-compose:1.4.0"
 composeUi = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+composeFoundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 composeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 composeMaterial = { module = "androidx.compose.material:material", version.ref = "compose" }

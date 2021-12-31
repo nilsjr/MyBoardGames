@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 12-30-2021
+ * Created by Nils Druyen on 12-31-2021
  * Copyright © 2021 Nils Druyen. All rights reserved.
  */
 
@@ -10,7 +10,7 @@ plugins {
   id("com.android.application") version "7.2.0-alpha06" apply false
   kotlin("android") version "1.6.10" apply false
   id("dagger.hilt.android.plugin") version "2.40.5" apply false
-  id("com.github.ben-manes.versions") version "0.39.0"
+  id("com.github.ben-manes.versions") version "0.40.0"
   id("io.gitlab.arturbosch.detekt") version "1.19.0"
 
   id("com.google.gms.google-services") version "4.3.10" apply false
