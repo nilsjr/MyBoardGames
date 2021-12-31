@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 12-30-2021
+ * Created by Nils Druyen on 12-31-2021
  * Copyright © 2021 Nils Druyen. All rights reserved.
  */
 
@@ -7,7 +7,6 @@ package de.nilsdruyen.myboardgames.ui.overview
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,13 +19,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -62,7 +62,7 @@ fun Overview(
     modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
     topBar = {
       SmallTopAppBar(
-        title = { Text("Mein Spiele") },
+        title = { Text("Meine Spiele") },
         actions = {
           IconButton(onClick = { showFilter() }) {
             Icon(
@@ -72,8 +72,8 @@ fun Overview(
           }
           IconButton(onClick = { addGame() }) {
             Icon(
-              imageVector = Icons.Filled.Add,
-              contentDescription = "Add Game"
+              imageVector = Icons.Filled.Search,
+              contentDescription = "Search Game"
             )
           }
         },
@@ -81,14 +81,16 @@ fun Overview(
       )
     },
     floatingActionButton = {
-      SmallFloatingActionButton(
-        onClick = { /* do something */ },
+      FloatingActionButton(
+        onClick = {
+          addGame()
+        },
       ) {
         Icon(Icons.Filled.Add, contentDescription = "Localized description")
       }
     },
     floatingActionButtonPosition = FabPosition.End,
-    content = { innerPadding ->
+    content = {
       Crossfade(targetState = state) { state ->
         when (state) {
           is OverviewContract.OverviewState.Loading -> {
@@ -111,7 +113,7 @@ fun Overview(
             }
           }
           is OverviewContract.OverviewState.AllGames -> {
-            BoardGameList(innerPadding, state.games, showGame)
+            BoardGameList(state.games, showGame)
           }
         }
       }
@@ -121,13 +123,11 @@ fun Overview(
 
 @Composable
 fun BoardGameList(
-  innerPadding: PaddingValues,
   games: List<BoardGame>,
   showGame: (BoardGame) -> Unit,
 ) {
   LazyColumn(
-    contentPadding = innerPadding,
-    verticalArrangement = Arrangement.spacedBy(12.dp)
+    contentPadding = PaddingValues(vertical = 12.dp)
   ) {
     items(games) { game ->
       GameItem(game, showGame)
@@ -141,10 +141,9 @@ fun GameItem(game: BoardGame, onGameClicked: (BoardGame) -> Unit) {
     modifier = Modifier
       .clickable { onGameClicked(game) }
       .fillMaxWidth()
-      .padding(horizontal = 8.dp),
-//    backgroundColor = MaterialTheme.colorScheme.surface,
-//    contentColor = MaterialTheme.colorScheme.primary,
-    shape = RoundedCornerShape(16.dp),
+      .padding(horizontal = 8.dp, vertical = 6.dp),
+    backgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+    shape = RoundedCornerShape(8.dp),
     elevation = 6.dp
   ) {
     Column(modifier = Modifier.padding(4.dp)) {

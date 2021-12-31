@@ -3,9 +3,8 @@
  * Copyright © 2021 Nils Druyen. All rights reserved.
  */
 
-package de.nilsdruyen.myboardgames.utils
+package de.nilsdruyen.myboardgames.ui.add
 
-object Constants {
-
-  const val NavigationDuration = 350
+enum class AddErrorType {
+  DuplicateNameOrId,
 }

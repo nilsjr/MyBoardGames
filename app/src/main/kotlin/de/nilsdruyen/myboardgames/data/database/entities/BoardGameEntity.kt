@@ -1,16 +1,17 @@
 /*
- * Created by Nils Druyen on 12-29-2021
+ * Created by Nils Druyen on 12-31-2021
  * Copyright © 2021 Nils Druyen. All rights reserved.
  */
 
 package de.nilsdruyen.myboardgames.data.database.entities
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import de.nilsdruyen.myboardgames.data.models.GameType
 import java.time.LocalDate
 
-@Entity(tableName = "board_game_table")
+@Entity(tableName = "board_game_table", indices = [Index(value = ["name"], unique = true)])
 data class BoardGameEntity(
   @PrimaryKey val id: String,
   val name: String,

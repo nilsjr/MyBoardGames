@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 12-30-2021
+ * Created by Nils Druyen on 12-31-2021
  * Copyright © 2021 Nils Druyen. All rights reserved.
  */
 
@@ -34,7 +34,7 @@ android {
   tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {
     kotlinOptions {
       jvmTarget = "11"
-      allWarningsAsErrors = true
+//      allWarningsAsErrors = true
       freeCompilerArgs = listOf(
         "-Xopt-in=kotlin.RequiresOptIn"
       )
@@ -85,6 +85,7 @@ dependencies {
   implementation(libs.composeActivity)
 
   implementation(libs.composeUi)
+  implementation(libs.composeFoundation)
   implementation(libs.composeMaterial)
   implementation(libs.composeMaterialIcons)
   implementation(libs.composeMaterial3)
