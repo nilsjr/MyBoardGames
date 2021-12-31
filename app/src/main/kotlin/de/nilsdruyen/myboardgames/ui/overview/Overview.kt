@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Sort
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -58,13 +59,19 @@ fun Overview(
       SmallTopAppBar(
         title = { Text("Meine Spiele") },
         actions = {
+          IconButton(onClick = { }) {
+            Icon(
+              imageVector = Icons.Filled.Sort,
+              contentDescription = "Sort Games"
+            )
+          }
           IconButton(onClick = { showFilter() }) {
             Icon(
               imageVector = Icons.Filled.FilterList,
               contentDescription = "Filter Games"
             )
           }
-          IconButton(onClick = { addGame() }) {
+          IconButton(onClick = { }) {
             Icon(
               imageVector = Icons.Filled.Search,
               contentDescription = "Search Game"
@@ -76,9 +83,7 @@ fun Overview(
     },
     floatingActionButton = {
       FloatingActionButton(
-        onClick = {
-          addGame()
-        },
+        onClick = { addGame() },
       ) {
         Icon(Icons.Filled.Add, contentDescription = "Localized description")
       }
