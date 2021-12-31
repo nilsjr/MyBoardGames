@@ -18,12 +18,39 @@ android {
     minSdk = 24
     targetSdk = 31
     versionCode = 1
-    versionName = "1.0"
+    versionName = "0.0.1"
+  }
+  signingConfigs {
+    getByName("debug") {
+      storeFile = file("../debug.keystore")
+      storePassword = "android"
+      keyAlias = "androiddebugkey"
+      keyPassword = "android"
+    }
+    if (findProperty("enableReleaseSigning") == "true") {
+      create("release") {
+        storeFile = file("../release.keystore", PathValidation.EXISTS)
+        storePassword = findStringProperty("myBoardGamesStorePassword")
+        keyAlias = findStringProperty("myBoardGamesKeyAlias")
+        keyPassword = findStringProperty("myBoardGamesKeyPassword")
+      }
+    }
   }
   buildTypes {
     release {
+      isShrinkResources = true
+      isMinifyEnabled = true
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    }
+    debug {
+      isShrinkResources = false
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    }
+    all {
+      if (findProperty("enableReleaseSigning") == "true") {
+        signingConfig = signingConfigs.getByName("release")
+      }
     }
   }
   compileOptions {
@@ -122,3 +149,10 @@ dependencies {
 }
 
 apply(plugin = "com.google.gms.google-services")
+
+fun Project.findStringProperty(propertyName: String): String? {
+  return findProperty(propertyName) as String? ?: run {
+    println("$propertyName missing in gradle.properties")
+    null
+  }
+}

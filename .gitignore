@@ -251,3 +251,5 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/kotlin,android,intellij,gradle
 /kotlin-js-store/
+
+release.keystore
