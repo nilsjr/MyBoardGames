@@ -21,8 +21,8 @@ import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -87,7 +87,7 @@ fun AddGamePane(state: AddGameState, addGame: (BoardGame) -> Unit, onBackPressed
         navigationIcon = {
           IconButton(onClick = { onBackPressed() }) {
             Icon(
-              imageVector = Icons.Filled.ArrowBack,
+              imageVector = Icons.Filled.Close,
               contentDescription = "Backpress"
             )
           }
@@ -213,10 +213,7 @@ fun GameTypeChooser(onGameTypeSelected: (GameType) -> Unit) {
           expanded = false
           onGameTypeSelected(items[index])
         }) {
-          Text(
-            text = s.name,
-            style = MaterialTheme.typography.bodyLarge,
-          )
+          Text(text = s.name, style = MaterialTheme.typography.bodyLarge)
         }
       }
     }

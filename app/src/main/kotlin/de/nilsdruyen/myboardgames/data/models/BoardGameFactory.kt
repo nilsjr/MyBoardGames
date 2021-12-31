@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 12-30-2021
+ * Created by Nils Druyen on 12-31-2021
  * Copyright © 2021 Nils Druyen. All rights reserved.
  */
 
@@ -19,6 +19,27 @@ object BoardGameFactory {
       playTimeInMin = 0,
       score = 0,
       manufacturer = "",
+      addedDate = LocalDate.now(),
+      purchasedAt = LocalDate.now(),
+    )
+  }
+
+  fun buildNewGame(
+    name: String,
+    type: GameType,
+    players: Int,
+    playTimeInMin: Int,
+    score: Int,
+    manufacturer: String,
+  ): BoardGame {
+    return BoardGame(
+      id = UUID.randomUUID().toString(),
+      name = name,
+      type = type,
+      players = players,
+      playTimeInMin = playTimeInMin,
+      score = score,
+      manufacturer = manufacturer,
       addedDate = LocalDate.now(),
       purchasedAt = LocalDate.now(),
     )

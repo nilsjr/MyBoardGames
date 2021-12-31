@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 12-30-2021
+ * Created by Nils Druyen on 12-31-2021
  * Copyright © 2021 Nils Druyen. All rights reserved.
  */
 
@@ -35,10 +35,7 @@ import de.nilsdruyen.myboardgames.data.models.BoardGame
 @Composable
 fun GameDetail(gameId: String, viewModel: GameDetailViewModel, onBackPressed: () -> Unit) {
   val state by viewModel.state.collectAsState()
-
-  if (state is GameDeleted) {
-    onBackPressed()
-  }
+  if (state is GameDeleted) onBackPressed()
 
   val openDeleteDialog = remember { mutableStateOf(false) }
 
@@ -51,12 +48,8 @@ fun GameDetail(gameId: String, viewModel: GameDetailViewModel, onBackPressed: ()
       onDismissRequest = {
         openDeleteDialog.value = false
       },
-      title = {
-        Text("Löschen")
-      },
-      text = {
-        Text("Möchten Sie das Spiel wirklich löschen?")
-      },
+      title = { Text("Löschen") },
+      text = { Text("Möchten Sie das Spiel wirklich löschen?") },
       confirmButton = {
         TextButton(onClick = {
           viewModel.setAction(DeleteGame(gameId))
