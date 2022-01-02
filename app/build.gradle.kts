@@ -1,6 +1,6 @@
 /*
- * Created by Nils Druyen on 12-31-2021
- * Copyright © 2021 Nils Druyen. All rights reserved.
+ * Created by Nils Druyen on 01-02-2022
+ * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
 plugins {
@@ -103,7 +103,6 @@ val dependencyUpdatesConfig by configurations
 val composeVersion = libs.versions.compose.get()
 dependencies {
   implementation(libs.core)
-
   implementation(libs.coroutines)
 
   implementation(libs.lifecycleRuntime)
