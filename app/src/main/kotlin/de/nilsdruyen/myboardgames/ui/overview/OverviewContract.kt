@@ -1,6 +1,6 @@
 /*
- * Created by Nils Druyen on 12-29-2021
- * Copyright © 2021 Nils Druyen. All rights reserved.
+ * Created by Nils Druyen on 01-02-2022
+ * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
 package de.nilsdruyen.myboardgames.ui.overview
@@ -10,24 +10,24 @@ import de.nilsdruyen.myboardgames.base.ViewIntent
 import de.nilsdruyen.myboardgames.base.ViewState
 import de.nilsdruyen.myboardgames.data.models.BoardGame
 
-interface OverviewContract {
+interface OverviewContract
 
-  sealed class OverviewAction : ViewAction {
+sealed class OverviewAction : ViewAction
 
-    object LoadGames : OverviewAction()
-  }
+object LoadGames : OverviewAction()
 
-  sealed class OverviewIntent : ViewIntent {
+data class ApplyFilter(val filterState: FilterState) : OverviewAction()
 
-    object LoadOverview : OverviewIntent()
-  }
+object ResetFilter : OverviewAction()
 
-  sealed class OverviewState : ViewState {
+sealed class OverviewIntent : ViewIntent
 
-    object Loading : OverviewState()
+object LoadOverview : OverviewIntent()
 
-    object EmptyList : OverviewState()
+sealed class OverviewState : ViewState
 
-    data class AllGames(val games: List<BoardGame> = emptyList()) : OverviewState()
-  }
-}
+object Loading : OverviewState()
+
+object EmptyList : OverviewState()
+
+data class AllGames(val games: List<BoardGame> = emptyList()) : OverviewState()

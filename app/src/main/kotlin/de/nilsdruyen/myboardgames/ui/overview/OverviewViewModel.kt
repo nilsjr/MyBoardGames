@@ -1,6 +1,6 @@
 /*
- * Created by Nils Druyen on 12-29-2021
- * Copyright © 2021 Nils Druyen. All rights reserved.
+ * Created by Nils Druyen on 01-02-2022
+ * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
 package de.nilsdruyen.myboardgames.ui.overview
@@ -8,6 +8,9 @@ package de.nilsdruyen.myboardgames.ui.overview
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.nilsdruyen.myboardgames.base.BaseViewModel
 import de.nilsdruyen.myboardgames.data.BoardGameRepository
+import de.nilsdruyen.myboardgames.data.models.GameType
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import timber.log.Timber
 import javax.inject.Inject
@@ -15,31 +18,34 @@ import javax.inject.Inject
 @HiltViewModel
 class OverviewViewModel @Inject constructor(
   private val repository: BoardGameRepository
-) :
-  BaseViewModel<OverviewContract.OverviewAction, OverviewContract.OverviewState, OverviewContract.OverviewIntent>() {
+) : BaseViewModel<OverviewAction, OverviewState, OverviewIntent>() {
 
-  override fun createInitialState(): OverviewContract.OverviewState =
-    OverviewContract.OverviewState.Loading
+  private val initialFilterState: FilterState by lazy {
+    FilterState(isActive = false, GameType.values().toList().associateWith { true })
+  }
 
-  override fun intentToAction(intent: OverviewContract.OverviewIntent): OverviewContract.OverviewAction =
+  private val _filterState = MutableStateFlow(initialFilterState)
+  val filterState: StateFlow<FilterState> get() = _filterState
+
+  override fun createInitialState(): OverviewState = Loading
+
+  override fun intentToAction(intent: OverviewIntent): OverviewAction =
     when (intent) {
-      is OverviewContract.OverviewIntent.LoadOverview -> OverviewContract.OverviewAction.LoadGames
+      is LoadOverview -> LoadGames
     }
 
-  override fun handleAction(action: OverviewContract.OverviewAction) {
+  override fun handleAction(action: OverviewAction) {
     launchOnUI {
       when (action) {
-        OverviewContract.OverviewAction.LoadGames -> {
+        LoadGames -> {
           val list = repository.observeList().first()
           setState {
             Timber.d("state: ${list.size}")
-            if (list.isEmpty()) {
-              OverviewContract.OverviewState.EmptyList
-            } else {
-              OverviewContract.OverviewState.AllGames(list)
-            }
+            if (list.isEmpty()) EmptyList else AllGames(list)
           }
         }
+        is ApplyFilter -> {}
+        ResetFilter -> {}
       }
     }
   }

@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 01-01-2022
+ * Created by Nils Druyen on 01-02-2022
  * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
@@ -263,7 +263,11 @@ fun Detail(game: BoardGame, isInEditMode: Boolean) {
       )
     }
     val color = MaterialTheme.colorScheme.secondary
+    val color2 = MaterialTheme.colorScheme.primary
+    val color3 = MaterialTheme.colorScheme.tertiary
     val borderColor = MaterialTheme.colorScheme.secondaryContainer
+    val borderColor2 = MaterialTheme.colorScheme.primaryContainer
+    val borderColor3 = MaterialTheme.colorScheme.tertiaryContainer
     Canvas(modifier = Modifier
       .constrainAs(cards) {
         width = Dimension.fillToConstraints
@@ -278,7 +282,7 @@ fun Detail(game: BoardGame, isInEditMode: Boolean) {
       val canvasHeight = size.height
       rotate(degrees = 25F) {
         drawRoundRect(
-          color = color,
+          color = color3,
           topLeft = Offset(x = canvasWidth / 2.5f, y = canvasHeight / 4f),
           size = Size(canvasSize.width, 300f),
           cornerRadius = CornerRadius(
@@ -287,11 +291,11 @@ fun Detail(game: BoardGame, isInEditMode: Boolean) {
           ),
         )
         drawRoundRect(
-          color = borderColor,
+          color = borderColor3,
           topLeft = Offset(x = canvasWidth / 2.5f, y = canvasHeight / 4f),
           size = Size(canvasSize.width, 300f),
           style = Stroke(
-            width = 4.dp.toPx(),
+            width = 8.dp.toPx(),
           ),
           cornerRadius = CornerRadius(
             x = 24.dp.toPx(),
@@ -301,7 +305,7 @@ fun Detail(game: BoardGame, isInEditMode: Boolean) {
       }
       rotate(degrees = 17F) {
         drawRoundRect(
-          color = color,
+          color = color2,
           topLeft = Offset(x = canvasWidth / 4f, y = canvasHeight / 1.5f),
           size = Size(canvasSize.width, 300f),
           cornerRadius = CornerRadius(
@@ -310,11 +314,11 @@ fun Detail(game: BoardGame, isInEditMode: Boolean) {
           ),
         )
         drawRoundRect(
-          color = borderColor,
+          color = borderColor2,
           topLeft = Offset(x = canvasWidth / 4f, y = canvasHeight / 1.5f),
           size = Size(canvasSize.width, 300f),
           style = Stroke(
-            width = 4.dp.toPx(),
+            width = 8.dp.toPx(),
           ),
           cornerRadius = CornerRadius(
             x = 24.dp.toPx(),
@@ -337,7 +341,7 @@ fun Detail(game: BoardGame, isInEditMode: Boolean) {
           topLeft = Offset(x = canvasWidth / 10f, y = canvasHeight / 1f),
           size = Size(canvasSize.width, 300f),
           style = Stroke(
-            width = 4.dp.toPx(),
+            width = 8.dp.toPx(),
           ),
           cornerRadius = CornerRadius(
             x = 24.dp.toPx(),
@@ -471,7 +475,8 @@ fun ColumnScope.Score(score: Int) {
         Icon(
           imageVector = Icons.Filled.StarRate,
           contentDescription = "Time to play",
-          modifier = Modifier.size(24.dp)
+          modifier = Modifier.size(24.dp),
+          tint = MaterialTheme.colorScheme.primary
         )
       }
     }
