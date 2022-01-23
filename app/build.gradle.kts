@@ -138,11 +138,12 @@ dependencies {
   implementation(libs.accompanistInsets)
   implementation(libs.accompanistNavAnim)
   implementation(libs.accompanistNavMaterial)
+  implementation(libs.accompanistFlowlayout)
 
   implementation(libs.timber)
   implementation(libs.lottie)
 
-  implementation(platform("com.google.firebase:firebase-bom:29.0.3"))
+  implementation(platform("com.google.firebase:firebase-bom:29.0.4"))
   implementation("com.google.firebase:firebase-crashlytics-ktx")
 }
 

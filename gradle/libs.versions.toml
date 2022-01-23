@@ -1,13 +1,13 @@
 [versions]
 kotlin = "1.6.10"
 coroutines = "1.6.0"
-compose = "1.1.0-rc01"
-composeCompiler = "1.1.0-rc02"
-room = "2.4.0"
+compose = "1.2.0-alpha01"
+composeCompiler = "1.2.0-alpha01"
+room = "2.4.1"
 moshi = "1.13.0"
 hilt = "2.40.5"
 lifecycle = "2.4.0"
-accompanist = "0.22.0-rc"
+accompanist = "0.24.0-alpha"
 
 [libraries]
 # android
@@ -37,14 +37,15 @@ composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "c
 composeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 composeMaterial = { module = "androidx.compose.material:material", version.ref = "compose" }
 composeMaterialIcons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
-composeMaterial3 = { module = "androidx.compose.material3:material3", version = "1.0.0-alpha02" }
+composeMaterial3 = { module = "androidx.compose.material3:material3", version = "1.0.0-alpha03" }
 composeNavigation = { module = "androidx.navigation:navigation-compose", version = "2.4.0-rc01" }
-constraintCompose = { module = "androidx.constraintlayout:constraintlayout-compose", version = "1.0.0-rc02" }
+constraintCompose = { module = "androidx.constraintlayout:constraintlayout-compose", version = "1.0.0" }
 # accompanist
 accompanistSystemUi = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 accompanistInsets = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
 accompanistNavAnim = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 accompanistNavMaterial = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
+accompanistFlowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 # utils
 timber = "com.jakewharton.timber:timber:5.0.1"
 lottie = "com.airbnb.android:lottie-compose:4.2.2"
