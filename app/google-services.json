@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378577164402:android:9373f2ce60ab6ddee74aeb",
+        "android_client_info": {
+          "package_name": "de.nilsdruyen.myboardgames.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378577164402-66r0634451jt32i8miugngqk8h9nc4hs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxrFC6540zapM1tGiUucnA42QoOnlqB34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378577164402-66r0634451jt32i8miugngqk8h9nc4hs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

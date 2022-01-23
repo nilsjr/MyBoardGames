@@ -97,12 +97,12 @@ fun Overview(
                 )
               }
             }
-            IconButton(onClick = { }) {
-              Icon(
-                imageVector = Icons.Filled.Search,
-                contentDescription = "Search Game"
-              )
-            }
+//            IconButton(onClick = { }) {
+//              Icon(
+//                imageVector = Icons.Filled.Search,
+//                contentDescription = "Search Game"
+//              )
+//            }
           },
           scrollBehavior = scrollBehavior
         )
@@ -146,9 +146,7 @@ fun Overview(
                 )
               }
             }
-            is AllGames -> {
-              BoardGameList(state.games, showGame)
-            }
+            is AllGames -> BoardGameList(state.games, showGame)
           }
         }
       }
