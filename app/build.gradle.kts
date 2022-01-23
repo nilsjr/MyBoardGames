@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 01-02-2022
+ * Created by Nils Druyen on 01-23-2022
  * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
@@ -45,6 +45,7 @@ android {
     debug {
       isShrinkResources = false
       isMinifyEnabled = false
+      applicationIdSuffix = ".debug"
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
     all {
@@ -61,7 +62,6 @@ android {
   tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {
     kotlinOptions {
       jvmTarget = "11"
-//      allWarningsAsErrors = true
       freeCompilerArgs = listOf(
         "-Xopt-in=kotlin.RequiresOptIn"
       )
@@ -143,7 +143,6 @@ dependencies {
   implementation(libs.lottie)
 
   implementation(platform("com.google.firebase:firebase-bom:29.0.3"))
-//  implementation("com.google.firebase:firebase-analytics-ktx")
   implementation("com.google.firebase:firebase-crashlytics-ktx")
 }
 
