@@ -18,7 +18,7 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.FilterList
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.SortByAlpha
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
@@ -49,121 +49,128 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun Overview(
-  viewModel: OverviewViewModel,
-  showGame: (BoardGame) -> Unit,
-  addGame: () -> Unit,
+    viewModel: OverviewViewModel,
+    showGame: (BoardGame) -> Unit,
+    addGame: () -> Unit,
 ) {
-  val state by viewModel.state.collectAsState()
-  val filterState = viewModel.filterState.collectAsState()
-  val coroutineScope = rememberCoroutineScope()
+    val state by viewModel.state.collectAsState()
+    val filterState = viewModel.filterState.collectAsState()
+    val coroutineScope = rememberCoroutineScope()
+    val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+    val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
 
-  val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
-
-  val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
-
-  LaunchedEffect(key1 = Unit) {
-    viewModel.setAction(LoadGames)
-  }
-
-  ModalBottomSheetLayout(
-    sheetState = bottomSheetState,
-    sheetBackgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-    sheetElevation = 16.dp,
-    sheetContent = {
-      FilterDialog(state = filterState.value) {
-        viewModel.setAction(ApplyFilter(it))
-      }
+    LaunchedEffect(key1 = Unit) {
+        viewModel.setAction(LoadGames)
     }
-  ) {
-    Scaffold(
-      modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-      topBar = {
-        SmallTopAppBar(
-          title = { Text("Meine Spiele") },
-          actions = {
-            IconButton(onClick = {
-              coroutineScope.launch {
-                if (bottomSheetState.isVisible) {
-                  bottomSheetState.hide()
-                } else {
-                  bottomSheetState.show()
+
+    ModalBottomSheetLayout(
+        sheetState = bottomSheetState,
+        sheetBackgroundColor = MaterialTheme.colorScheme.background,
+        sheetElevation = 8.dp,
+        sheetContent = {
+            FilterDialog(state = filterState.value, {
+                viewModel.setAction(ChangeFilter(it))
+            }, {
+                coroutineScope.launch {
+                    bottomSheetState.hide()
+                    viewModel.setAction(ApplyFilter)
                 }
-              }
-            }) {
-              BadgedBox(badge = { Badge { Text("1") } }) {
-                Icon(
-                  imageVector = Icons.Filled.FilterList,
-                  contentDescription = "Filter Games"
+            }, {
+                coroutineScope.launch {
+                    bottomSheetState.hide()
+                    viewModel.setAction(ResetFilter)
+                }
+            })
+        }
+    ) {
+        Scaffold(
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            topBar = {
+                SmallTopAppBar(
+                    title = { Text("Meine Spiele") },
+                    actions = {
+                        IconButton(onClick = {
+                            coroutineScope.launch {
+                                if (bottomSheetState.isVisible) {
+                                    bottomSheetState.hide()
+                                } else {
+                                    bottomSheetState.show()
+                                }
+                            }
+                        }) {
+                            BadgedBox(badge = {
+                                if (filterState.value.isActive) {
+                                    Badge {
+                                        Text(filterState.value.activeFilterCount().toString())
+                                    }
+                                }
+                            }) {
+                                Icon(
+                                    imageVector = Icons.Filled.FilterList,
+                                    contentDescription = "Filter Games"
+                                )
+                            }
+                        }
+                        IconButton(onClick = {
+                            viewModel.setAction(OrderAction)
+                        }) {
+                            Icon(
+                                imageVector = Icons.Filled.SortByAlpha,
+                                contentDescription = "Sort by name"
+                            )
+                        }
+                    },
+                    scrollBehavior = scrollBehavior
                 )
-              }
+            },
+            floatingActionButton = {
+                FloatingActionButton(
+                    onClick = { addGame() },
+                ) {
+                    Icon(Icons.Filled.Add, contentDescription = "Localized description")
+                }
+            },
+            floatingActionButtonPosition = FabPosition.End,
+            content = {
+                Crossfade(targetState = state) { state ->
+                    when (state) {
+                        is Loading -> {
+                            Box(modifier = Modifier.fillMaxSize()) {
+                                LoadingMorty(
+                                    Modifier
+                                        .fillMaxSize(fraction = 0.5f)
+                                        .align(Alignment.Center)
+                                )
+                            }
+                        }
+                        EmptyList -> {
+                            Box(modifier = Modifier.fillMaxSize()) {
+                                Text(
+                                    text = "Keine Spiele eingetragen!",
+                                    modifier = Modifier
+                                        .padding(16.dp)
+                                        .align(Alignment.Center)
+                                )
+                            }
+                        }
+                        is AllGames -> BoardGameList(state.games, showGame)
+                    }
+                }
             }
-//            IconButton(onClick = { }) {
-//              Icon(
-//                imageVector = Icons.Filled.Search,
-//                contentDescription = "Search Game"
-//              )
-//            }
-          },
-          scrollBehavior = scrollBehavior
         )
-      },
-      floatingActionButton = {
-        FloatingActionButton(
-          onClick = { addGame() },
-        ) {
-          Icon(Icons.Filled.Add, contentDescription = "Localized description")
-        }
-      },
-      floatingActionButtonPosition = FabPosition.End,
-//    scaffoldState = bottomSheetScaffoldState,
-//    sheetShape = RoundedCornerShape(8.dp, topEnd = 8.dp),
-//    sheetBackgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-//    sheetElevation = 16.dp,
-//    sheetContent = {
-//      FilterDialog(state = filterState.value) {
-//        viewModel.setAction(ApplyFilter(it))
-//      }
-//    },
-      content = {
-        Crossfade(targetState = state) { state ->
-          when (state) {
-            is Loading -> {
-              Box(modifier = Modifier.fillMaxSize()) {
-                LoadingMorty(
-                  Modifier
-                    .fillMaxSize(fraction = 0.5f)
-                    .align(Alignment.Center)
-                )
-              }
-            }
-            EmptyList -> {
-              Box(modifier = Modifier.fillMaxSize()) {
-                Text(
-                  text = "Keine Spiele eingetragen!",
-                  modifier = Modifier
-                    .padding(16.dp)
-                    .align(Alignment.Center)
-                )
-              }
-            }
-            is AllGames -> BoardGameList(state.games, showGame)
-          }
-        }
-      }
-    )
-  }
+    }
 }
 
 @Composable
 fun BoardGameList(
-  games: List<BoardGame>,
-  showGame: (BoardGame) -> Unit,
+    games: List<BoardGame>,
+    showGame: (BoardGame) -> Unit,
 ) {
-  LazyColumn(
-    contentPadding = PaddingValues(bottom = 4.dp)
-  ) {
-    items(games) { game ->
-      GameItem(game, showGame)
+    LazyColumn(
+        contentPadding = PaddingValues(bottom = 4.dp)
+    ) {
+        items(games) { game ->
+            GameItem(game, showGame)
+        }
     }
-  }
 }

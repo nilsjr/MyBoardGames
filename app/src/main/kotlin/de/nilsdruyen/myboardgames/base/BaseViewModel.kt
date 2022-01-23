@@ -18,60 +18,60 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel<Action : ViewAction, State : ViewState, Intent : ViewIntent> :
-  ViewModel() {
+    ViewModel() {
 
-  private val initialState: State by lazy { createInitialState() }
+    private val initialState: State by lazy { createInitialState() }
 
-  private val _state = MutableStateFlow(initialState)
-  val state: StateFlow<State> get() = _state
+    private val _state = MutableStateFlow(initialState)
+    val state: StateFlow<State> = _state
 
-  private val currentState: State
-    get() = state.value
+    private val currentState: State
+        get() = state.value
 
-  private val _event: MutableSharedFlow<Action> = MutableSharedFlow()
-  private val event: SharedFlow<Action> = _event.asSharedFlow()
+    private val _event: MutableSharedFlow<Action> = MutableSharedFlow()
+    private val event: SharedFlow<Action> = _event.asSharedFlow()
 
-  private val _intent: Channel<Intent> = Channel()
-  val intent = _intent.receiveAsFlow()
+    private val _intent: Channel<Intent> = Channel()
+    val intent = _intent.receiveAsFlow()
 
-  init {
-    observerEvents()
-  }
-
-  private fun observerEvents() {
-    viewModelScope.launch {
-      event.collect(this@BaseViewModel::handleAction)
+    init {
+        observerEvents()
     }
-  }
 
-  fun launchOnUI(block: suspend CoroutineScope.() -> Unit) {
-    viewModelScope.launch { block() }
-  }
-
-  fun dispatchIntent(intent: Intent) {
-    handleAction(intentToAction(intent))
-  }
-
-  abstract fun createInitialState(): State
-
-  abstract fun intentToAction(intent: Intent): Action
-
-  abstract fun handleAction(action: Action)
-
-  protected fun setState(reduce: State.() -> State) {
-    val newState = currentState.reduce()
-    _state.value = newState
-  }
-
-  fun setAction(action: Action) {
-    viewModelScope.launch {
-      _event.emit(action)
+    private fun observerEvents() {
+        viewModelScope.launch {
+            event.collect(this@BaseViewModel::handleAction)
+        }
     }
-  }
 
-  fun setIntent(builder: () -> Intent) {
-    viewModelScope.launch {
-      _intent.send(builder())
+    fun launchOnUI(block: suspend CoroutineScope.() -> Unit) {
+        viewModelScope.launch { block() }
     }
-  }
+
+    fun dispatchIntent(intent: Intent) {
+        handleAction(intentToAction(intent))
+    }
+
+    abstract fun createInitialState(): State
+
+    abstract fun intentToAction(intent: Intent): Action
+
+    abstract fun handleAction(action: Action)
+
+    protected fun setState(reduce: State.() -> State) {
+        val newState = currentState.reduce()
+        _state.value = newState
+    }
+
+    fun setAction(action: Action) {
+        viewModelScope.launch {
+            _event.emit(action)
+        }
+    }
+
+    fun setIntent(builder: () -> Intent) {
+        viewModelScope.launch {
+            _intent.send(builder())
+        }
+    }
 }

@@ -11,6 +11,15 @@ data class FilterState(
   val isActive: Boolean = false,
   val isGameType: Map<GameType, Boolean> = emptyMap(),
   val isManufacturer: Set<String> = emptySet(),
-  val isPlayerCount: Int = 1,
+  val isPlayerCount: Int = 4,
   val isPlayTimeInMin: Int = 10,
-)
+) {
+
+  fun activeFilterCount(): Int {
+    val filters = listOf(
+      isGameType.all { it.value },
+      isPlayerCount < 4,
+    )
+    return filters.count { !it }
+  }
+}
