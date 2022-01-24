@@ -1,6 +1,6 @@
 /*
- * Created by Nils Druyen on 12-31-2021
- * Copyright © 2021 Nils Druyen. All rights reserved.
+ * Created by Nils Druyen on 01-24-2022
+ * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
 package de.nilsdruyen.myboardgames.ui.overview
@@ -35,7 +35,6 @@ import de.nilsdruyen.myboardgames.ui.theme.MyBoardGamesTheme
 fun GameItem(game: BoardGame, onGameClicked: (BoardGame) -> Unit) {
   MaterialCard(
     modifier = Modifier
-      .clickable { onGameClicked(game) }
       .fillMaxWidth()
       .padding(horizontal = 16.dp, vertical = 8.dp),
     backgroundColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -43,7 +42,9 @@ fun GameItem(game: BoardGame, onGameClicked: (BoardGame) -> Unit) {
     elevation = 4.dp
   ) {
     ConstraintLayout(
-      modifier = Modifier.padding(8.dp)
+      modifier = Modifier
+        .clickable { onGameClicked(game) }
+        .padding(8.dp)
     ) {
       val (name, type, manufacturer, players, playTime, score) = createRefs()
 

@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 01-02-2022
+ * Created by Nils Druyen on 01-24-2022
  * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
@@ -32,11 +32,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.flowlayout.FlowRow
 import de.nilsdruyen.myboardgames.data.models.GameType
 import de.nilsdruyen.myboardgames.data.models.toName
 import de.nilsdruyen.myboardgames.ui.components.CustomSlider
-import de.nilsdruyen.myboardgames.ui.components.SelectableChip
 import de.nilsdruyen.myboardgames.ui.components.SliderItem
 import de.nilsdruyen.myboardgames.ui.theme.MyBoardGamesTheme
 

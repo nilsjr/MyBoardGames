@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Nils Druyen on 01-24-2022
+  ~ Copyright © 2022 Nils Druyen. All rights reserved.
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="de.nilsdruyen.myboardgames">
@@ -20,6 +25,7 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.MyBoardGames">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
