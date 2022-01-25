@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Nils Druyen on 01-02-2022
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Nils Druyen on 01-25-2022
   ~ Copyright © 2022 Nils Druyen. All rights reserved.
   -->
 
@@ -16,45 +17,45 @@
 
         <path
             android:fillColor="#FFFFFF"
-            android:strokeColor="#00e472"
+            android:strokeColor="#FFFFFF"
             android:strokeWidth="1"
             android:strokeMiterLimit="10"
             android:pathData="M44.005,316.479" />
         <path
-            android:strokeColor="#00e472"
+            android:strokeColor="#FFFFFF"
             android:strokeWidth="4"
             android:strokeMiterLimit="10"
             android:strokeLineCap="round"
             android:pathData="M9.956,41v28.875 c0,4.4,3.129,9.78,6.953,11.957L46.86,98.793c3.824,2.177,7.096,0.357,7.096-4.043V62.5c0-4.4,2.974-9.802,6.782-12.005 L90.255,33.38c3.809-2.203,6.93-0.406,6.979,3.994l0.357,33.873c0.049,4.4-3.077,9.73-6.936,11.844L64.585,97.5" />
         <path
-            android:strokeColor="#00e472"
+            android:strokeColor="#FFFFFF"
             android:strokeWidth="4"
             android:strokeMiterLimit="10"
             android:strokeLineCap="round"
             android:pathData="M85.831,22.5L61.683,7.58 c-3.743-2.313-9.916-2.393-13.718-0.177L17.894,24.927c-3.802,2.215-3.792,5.824,0.021,8.019l28.541,16.429" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M41.186,57.673c-1.999-0.871-4.25,0.75-4.25,2.869s1.029,3.636,2.798,4.925c2.148,1.565,5.277,0.541,5.329-1.781 C45.116,61.332,44.04,58.917,41.186,57.673z" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M77.429,60.954c-2.125,0.705-3.199,3.382-3.206,5.083c-0.009,1.7,1.081,3.788,3.117,3.34 c2.905-0.639,3.354-3.72,3.362-5.42C80.711,62.255,79.957,60.115,77.429,60.954z" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M54.877,36.922c-2.159,0-4.621,1.704-4.621,3.659c0,1.892,2.415,3.659,4.621,3.659c2.156,0,4.621-1.714,4.621-3.659 C59.498,38.903,57.08,36.922,54.877,36.922z" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M54.877,23.922c-2.159,0-4.62,1.704-4.62,3.659c0,1.892,2.414,3.659,4.62,3.659c2.156,0,4.62-1.714,4.62-3.659 C59.497,25.903,57.079,23.922,54.877,23.922z" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M54.877,11.922c-2.159,0-4.62,1.704-4.62,3.659c0,1.892,2.414,3.659,4.62,3.659c2.156,0,4.62-1.714,4.62-3.659 C59.497,13.903,57.079,11.922,54.877,11.922z" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M23.186,46.673c-1.999-0.871-4.25,0.75-4.25,2.869s1.029,3.636,2.798,4.925c2.148,1.565,5.277,0.541,5.329-1.781 C27.116,50.332,26.04,47.917,23.186,46.673z" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M24.186,67.673c-1.999-0.871-4.25,0.75-4.25,2.869s1.029,3.636,2.798,4.925c2.148,1.565,5.277,0.541,5.329-1.781 C28.116,71.332,27.04,68.917,24.186,67.673z" />
         <path
-            android:fillColor="#00e472"
+            android:fillColor="#FFFFFF"
             android:pathData="M41.186,78.674c-1.999-0.871-4.25,0.749-4.25,2.868s1.029,3.636,2.798,4.925c2.148,1.565,5.277,0.541,5.329-1.781 C45.116,82.332,44.04,79.916,41.186,78.674z" />
     </group>
 </vector>
