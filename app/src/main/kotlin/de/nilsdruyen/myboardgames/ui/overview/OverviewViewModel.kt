@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 01-24-2022
+ * Created by Nils Druyen on 01-27-2022
  * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OverviewViewModel @Inject constructor(
-  private val repository: BoardGameRepository
+  private val repository: BoardGameRepository,
 ) : BaseViewModel<OverviewAction, OverviewState, OverviewIntent>() {
 
   private val initialFilterState: FilterState by lazy {

@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 01-24-2022
+ * Created by Nils Druyen on 01-27-2022
  * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,7 +39,7 @@ import de.nilsdruyen.myboardgames.ui.components.CustomSlider
 import de.nilsdruyen.myboardgames.ui.components.SliderItem
 import de.nilsdruyen.myboardgames.ui.theme.MyBoardGamesTheme
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun FilterDialog(
     state: FilterState,

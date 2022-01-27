@@ -1,12 +1,14 @@
 /*
- * Created by Nils Druyen on 12-29-2021
- * Copyright © 2021 Nils Druyen. All rights reserved.
+ * Created by Nils Druyen on 01-27-2022
+ * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
 package de.nilsdruyen.myboardgames.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import de.nilsdruyen.myboardgames.annotations.MainDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -16,9 +18,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 abstract class BaseViewModel<Action : ViewAction, State : ViewState, Intent : ViewIntent> :
     ViewModel() {
+
+    @Inject
+    @MainDispatcher
+    lateinit var dispatcher: CoroutineDispatcher
 
     private val initialState: State by lazy { createInitialState() }
 
@@ -39,13 +46,13 @@ abstract class BaseViewModel<Action : ViewAction, State : ViewState, Intent : Vi
     }
 
     private fun observerEvents() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             event.collect(this@BaseViewModel::handleAction)
         }
     }
 
     fun launchOnUI(block: suspend CoroutineScope.() -> Unit) {
-        viewModelScope.launch { block() }
+        viewModelScope.launch(dispatcher) { block() }
     }
 
     fun dispatchIntent(intent: Intent) {
@@ -64,13 +71,13 @@ abstract class BaseViewModel<Action : ViewAction, State : ViewState, Intent : Vi
     }
 
     fun setAction(action: Action) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             _event.emit(action)
         }
     }
 
     fun setIntent(builder: () -> Intent) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             _intent.send(builder())
         }
     }
