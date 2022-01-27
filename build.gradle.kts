@@ -1,5 +1,5 @@
 /*
- * Created by Nils Druyen on 01-23-2022
+ * Created by Nils Druyen on 01-27-2022
  * Copyright © 2022 Nils Druyen. All rights reserved.
  */
 
@@ -7,7 +7,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
 plugins {
-  id("com.android.application") version "7.2.0-alpha07" apply false
+  id("com.android.application") version "7.2.0-beta01" apply false
   kotlin("android") version "1.6.10" apply false
   id("dagger.hilt.android.plugin") version "2.40.5" apply false
   id("com.github.ben-manes.versions") version "0.41.0"
