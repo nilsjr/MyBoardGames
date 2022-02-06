@@ -80,20 +80,16 @@ import de.nilsdruyen.myboardgames.ui.theme.MyBoardGamesTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameDetail(gameId: String, viewModel: GameDetailViewModel, onBackPressed: () -> Unit) {
+fun GameDetail(viewModel: GameDetailViewModel, onBackPressed: () -> Unit) {
   val state by viewModel.state.collectAsState()
   if (state is GameDeleted) onBackPressed()
 
   val openDeleteDialog = remember { mutableStateOf(false) }
   var isInEditMode by remember { mutableStateOf(false) }
 
-  LaunchedEffect(key1 = gameId) {
-    viewModel.setAction(LoadGame(gameId))
-  }
-
   if (openDeleteDialog.value) {
     DeleteDialog(openDeleteDialog) {
-      viewModel.setAction(DeleteGame(gameId))
+      viewModel.setAction(DeleteGame)
     }
   }
 

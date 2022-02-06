@@ -5,15 +5,28 @@
 
 package de.nilsdruyen.myboardgames.ui.detail
 
+import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.nilsdruyen.myboardgames.base.BaseViewModel
 import de.nilsdruyen.myboardgames.data.BoardGameRepository
+import de.nilsdruyen.myboardgames.ui.Screen
 import javax.inject.Inject
 
 @HiltViewModel
 class GameDetailViewModel @Inject constructor(
-  private val repository: BoardGameRepository
+  private val repository: BoardGameRepository,
+  val saveState: SavedStateHandle,
 ) : BaseViewModel<GameDetailAction, GameDetailState, GameDetailIntent>() {
+
+  val gameId = saveState.get<String>(Screen.GameDetails.argument)!!
+
+  init {
+
+    launchOnUI {
+      val game = repository.get(gameId)
+      setState { Details(game) }
+    }
+  }
 
   override fun createInitialState(): GameDetailState = Loading
 
@@ -22,17 +35,16 @@ class GameDetailViewModel @Inject constructor(
   }
 
   override fun handleAction(action: GameDetailAction) {
-    launchOnUI {
-      when (action) {
-        is LoadGame -> {
-          val game = repository.get(action.id)
-          setState { Details(game) }
-        }
-        is DeleteGame -> {
-          repository.delete(action.id)
-          setState { GameDeleted }
-        }
-      }
+//    launchOnUI {
+//      when (action) {
+//        is LoadGame -> {
+//          val game = repository.get(action.id)
+//          setState { Details(game) }
+//        }
+//        is DeleteGame -> {
+//          repository.delete(action.id)
+//          setState { GameDeleted }
+//        }
+//      }
     }
-  }
 }

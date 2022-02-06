@@ -174,10 +174,7 @@ fun MyBoardGames() {
           )
         },
       ) { backStackEntry ->
-        val gameId =
-          backStackEntry.arguments?.getString(Screen.GameDetails.argument) ?: return@composable
-
-        GameDetail(gameId = gameId, viewModel = hiltViewModel()) {
+        GameDetail(viewModel = hiltViewModel(backStackEntry)) {
           navController.navigateUp()
         }
       }

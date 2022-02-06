@@ -14,9 +14,7 @@ interface GameDetailContract
 
 sealed interface GameDetailAction : ViewAction
 
-data class LoadGame(val id: String) : GameDetailAction
-
-data class DeleteGame(val id: String) : GameDetailAction
+object DeleteGame : GameDetailAction
 
 sealed interface GameDetailState : ViewState
 
