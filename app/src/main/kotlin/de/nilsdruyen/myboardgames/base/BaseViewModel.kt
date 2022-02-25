@@ -42,17 +42,17 @@ abstract class BaseViewModel<Action : ViewAction, State : ViewState, Intent : Vi
     val intent = _intent.receiveAsFlow()
 
     init {
-        observerEvents()
+        observeEvent()
     }
 
-    private fun observerEvents() {
-        viewModelScope.launch(dispatcher) {
+    private fun observeEvent() {
+        viewModelScope.launch {
             event.collect(this@BaseViewModel::handleAction)
         }
     }
 
     fun launchOnUI(block: suspend CoroutineScope.() -> Unit) {
-        viewModelScope.launch(dispatcher) { block() }
+        viewModelScope.launch { block() }
     }
 
     fun dispatchIntent(intent: Intent) {

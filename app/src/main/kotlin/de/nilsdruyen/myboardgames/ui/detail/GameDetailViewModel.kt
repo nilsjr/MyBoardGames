@@ -21,7 +21,6 @@ class GameDetailViewModel @Inject constructor(
   val gameId = saveState.get<String>(Screen.GameDetails.argument)!!
 
   init {
-
     launchOnUI {
       val game = repository.get(gameId)
       setState { Details(game) }
