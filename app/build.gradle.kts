@@ -67,7 +67,6 @@ android {
       )
     }
   }
-  sourceSets.getByName("main").java.srcDirs("src/main/kotlin")
   buildFeatures {
     compose = true
     buildConfig = true
@@ -143,7 +142,7 @@ dependencies {
   implementation(libs.timber)
   implementation(libs.lottie)
 
-  implementation(platform("com.google.firebase:firebase-bom:29.0.4"))
+  implementation(platform(libs.firebaseBom))
   implementation("com.google.firebase:firebase-crashlytics-ktx")
 }
 

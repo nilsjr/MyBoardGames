@@ -7,10 +7,10 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
 plugins {
-  id("com.android.application") version "7.3.0-alpha01" apply false
+  id("com.android.application") version "7.3.0-alpha03" apply false
   kotlin("android") version "1.6.10" apply false
-  id("dagger.hilt.android.plugin") version "2.40.5" apply false
-  id("com.github.ben-manes.versions") version "0.41.0"
+  id("com.google.dagger.hilt.android") version "2.41" apply false
+  id("com.github.ben-manes.versions") version "0.42.0"
   id("io.gitlab.arturbosch.detekt") version "1.19.0"
 
   id("com.google.gms.google-services") version "4.3.10" apply false
